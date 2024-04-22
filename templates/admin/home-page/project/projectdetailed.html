@@ -1,0 +1,284 @@
+{% extends 'admin/layouts/apps.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!--begin::Content wrapper-->
+<div class="d-flex flex-column flex-column-fluid">
+    {% include 'admin/layouts/breadcrumbs.html' %}
+    
+    <!--begin::Content-->
+
+    <div id="kt_app_content" class="app-content flex-column-fluid">
+        <!--begin::Content container-->
+        <div id="kt_app_content_container" class="app-container container-xxl">
+            <!--begin::Form-->
+            <form id="create-or-update-company-profile-form" class="form d-flex flex-column flex-lg-row" method="GET"
+                enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="instance_id" value="{{instance.id}}" />
+                <!--begin::Aside column-->
+                <!--begin::Main column-->
+                <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                    <!--begin::Tab content-->
+                    <div class="tab-content">
+                        <!--begin::Tab pane-->
+                        <div class="tab-pane fade show active" id="create-or-update-user-general" role="tab-panel">
+                            <div class="d-flex flex-column gap-7 gap-lg-10">
+                                <div class="card card-flush py-4">
+                                    <div class="card-body pt-0 ">
+
+                                        <table cellpadding="0" cellspacing="0"
+                                            style="width: 100%; border: 1px solid #ededed">
+                                            <tbody>
+
+                                                <tr>
+                                                    <th colspan="2" style="font-size: larger; padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: bold; color: #455056; text-align: center;">
+                                                        Project Name: {{ instance.title }}
+                                                    </th>                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td
+                                                    style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight:500; color:#455056">
+                                                    <b>Created Date</b></td>
+                                                    <td
+                                                    style="padding: 10px; border-bottom: 1px solid #ededed; color: #000000;">
+                                                    {{ instance.created_date|date:"d/m/Y" }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td
+                                                    style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight:500; color:#455056">
+                                                    <b>Updated Date</b></td>
+                                                    <td
+                                                    style="padding: 10px; border-bottom: 1px solid #ededed; color: #000000;">
+                                                    {{instance.modified_date|date:"d/m/Y"}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight:500; color:#455056">
+                                                        Download 
+                                                    </td>
+                                                    <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #000000;">                                                        
+                                                        
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="16" width="20">
+                                                            <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                                                        </svg>
+                                                        
+                                                    </td>
+                                                </tr>
+                                                                                        <!-- Todo details -->
+                                                
+                                                 {% if todos %}
+                                                <tr>
+                                                    <th colspan="2" style="font-size: larger; padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: bold; color: #455056; text-align: center;">
+                                                        TODO Details
+                                                    </th>                                                    
+                                                </tr>
+
+
+                                                {% for todo in todos %}
+
+                                                <tr>
+                                                    <tr>
+                                                        <th colspan="2" style="font-size:17px;padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: bold; color: #455056">
+                                                            {{ forloop.counter }}. {{todo.todo_title}}
+                                                        </th>                                                    
+                                                    </tr>
+                                                </tr>
+
+                                                <tr>
+                                                    <td
+                                                    style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight:500; color:#455056">
+                                                    <b>Description</b></td>
+                                                    <td
+                                                    style="padding: 10px; border-bottom: 1px solid #ededed; color: #000000;">
+                                                    {{ todo.description }}
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td
+                                                    style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight:500; color:#455056">
+                                                    <b>TODO Status</b></td>
+                                                    <td
+                                                    style="padding: 10px; border-bottom: 1px solid #ededed; color: #000000;">
+                                                    {{ todo.status}}
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td
+                                                    style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight:500; color:#455056">
+                                                    <b>Created Date</b></td>
+                                                    <td
+                                                    style="padding: 10px; border-bottom: 1px solid #ededed; color: #000000;">
+                                                    {{ todo.created_date|date:"d/m/Y" }}
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td
+                                                    style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight:500; color:#455056">
+                                                    <b>Updated Date</b></td>
+                                                    <td
+                                                    style="padding: 10px; border-bottom: 1px solid #ededed; color: #000000;">
+                                                    {{ todo.modified_date|date:"d/m/Y" }}
+                                                    </td>
+                                                </tr>
+
+                                                {% endfor %}
+
+                                                {% endif %}
+
+                                            </tbody>
+                                        </table>
+
+                                        <style>
+                                            .images-list-wrap{
+                                                margin-top: 25px;
+                                            }
+                                            .images-list-wrap ul{
+                                                list-style: none;
+                                                padding: 0;
+                                                margin: 0;
+                                                display: flex;
+                                                gap: 10px;
+                                                flex-wrap: wrap;
+                                            }
+                                            .images-list-wrap ul li{
+                                                display: flex;
+                                                width: 200px;
+                                                height: 150px;
+                                                border: 1px solid #efefef;
+                                                overflow: hidden;
+                                            }
+                                            .images-list-wrap ul li img{
+                                                width: 100%;
+                                                height: 100%;
+                                            }
+                                            #imagePopup {
+                                                position: fixed;
+                                                top: 0;
+                                                left: 0;
+                                                width: 100%;
+                                                height: 100%;
+                                                background: rgba(0, 0, 0, 0.7);
+                                                display: none;
+                                                flex-direction: column;
+                                                align-items: center;
+                                                justify-content: center;
+                                                padding: 5%;
+                                            }
+                                            
+                                            #popupImage {
+                                                max-width: 80%;
+                                                max-height: 80%;
+                                            }
+                                            
+                                            .closeButton {
+                                                position: absolute;
+                                                top: 70px;
+                                                right: 10px;
+                                                font-size: 40px;
+                                                background: none;
+                                                border: none;
+                                                color: white;
+                                                cursor: pointer;
+                                            }
+                                            
+                                            .images-list-wrap ul li img:hover {
+                                                cursor: pointer;
+                                                cursor: hand; /* For IE 5-7 */
+                                            }
+                                        </style>                                                 
+                                    </div>
+
+
+                                    <!--POP UP-->
+                                    <div id="imagePopup" style="display: none;">
+                                        <button onclick="closeImage()" class="closeButton">&times;</button>
+                                        <img id="popupImage" alt="Popup Image">
+                                    </div>
+                                    <!--END POP UP-->
+
+
+                                </div>
+                            </div>
+                            <!--end::Tab pane-->
+                        </div>
+
+                        <div class="d-flex justify-content-end" style='padding-top: 20px;'>
+                            <!--begin::Button-->
+                            <a href="{% url 'project:project.index' %}" id="kt_ecommerce_add_product_cancel"
+                                class="btn btn-light me-5" style="background-color: #27c3f185;">Back</a>
+                            <!--end::Button-->
+                        </div>
+                      
+                    </div>
+                    <!--end::Main column-->
+            </form>
+            <!--end::Form-->
+                  <!--end::Tab content-->
+
+        </div>
+        <!--end::Content container-->
+    </div>
+    <!--end::Content-->
+</div>
+<!--end::Content wrapper-->
+{% endblock content %}
+{% block script %}
+<script>
+
+function openImagePopup(fileUrl) {
+    const content = `<div style="position: relative;">
+        <img id="previewImage" src="${fileUrl}" style="max-width: 80%; max-height: 100%; object-fit: contain;" />
+    </div>`;
+
+    const popupContent = `${content}
+        <div style="position: absolute; top: 10px; right: 10px;">
+            <button class="close-button" onclick="Swal.close()" style="background: transparent; border: none; color: #000; font-size: 20px; cursor: pointer;">×</button>
+        </div>
+        <div style="position: absolute; bottom: 10px; right: 10px;">
+            <button onclick="downloadFile('${fileUrl}')" class="download-button" style="border: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2699e0" class="bi bi-download" viewBox="0 0 16 16">
+                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+                </svg>
+            </button>
+        </div>`;
+
+    Swal.fire({
+        html: popupContent,
+        showConfirmButton: false,
+        customClass: {
+            popup: 'file-preview-popup',
+            image: 'file-preview-image'
+        },
+        width: '40%', 
+        height: '40%',
+        padding: '15px',
+        scrollbarPadding: false
+    });
+}
+
+function downloadFile(fileUrl) {
+    let anchorTag = document.createElement('a');
+    anchorTag.href =   fileUrl ;
+    anchorTag.download = "linktext";
+    anchorTag.click();
+}
+
+
+
+
+</script>
+{% comment %}
+<script
+
+    src="{% static 'assets/js/custom/pages/home-page/project/projectdetailed.js' %}?time={% now 'h:i:s' %}">
+
+</script> {% endcomment %}
+
+
+{% endblock script %}

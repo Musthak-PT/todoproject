@@ -1,0 +1,144 @@
+{% extends 'admin/layouts/apps.html' %}
+{% load static %}
+
+
+{% block content %}
+<style>
+    .pt-21 {
+        padding-top: 20px;
+    }
+</style>
+<!--begin::Content wrapper-->
+<div class="d-flex flex-column flex-column-fluid">
+    {% include 'admin/layouts/breadcrumbs.html' %}
+    <!--begin::Content-->
+    <div id="kt_app_content" class="app-content flex-column-fluid">
+        <!--begin::Content container-->
+        <div id="kt_app_content_container" class="app-container container-xxl">
+            <!--begin::Form-->
+            <form id="create-or-update-company-profile-form" class="form d-flex flex-column flex-lg-row" method="POST"
+                enctype="multipart/form-data" action="{% if instance.id is not None %}{% url 'career:job.vacancy.update' instance.id %}{% else %}{% url 'career:job.vacancy.create' %}{% endif %}">
+                {% csrf_token %}
+                <input type="hidden" name="instance_id" value="{{instance.id}}" />
+
+                <!--begin::Main column-->
+                <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                    <!--begin:::Tabs-->
+
+                    <!--end:::Tabs-->
+                    <!--begin::Tab content-->
+                    <div class="tab-content">
+                        <!--begin::Tab pane-->
+                        <div class="tab-pane fade show active" id="create-or-update-user-general" role="tab-panel">
+                            <div class="d-flex flex-column gap-7 gap-lg-10">
+                                <div class="card card-flush py-4">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h2>Job</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-body pt-0 ">
+                                        <div class="d-flex mb-10 flex-wrap gap-5 mt-10">
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <div class="mb-5 fv-row">
+                                                    <label class="required form-label">Designation</label>
+                                                    <input type="text" name="designation"
+                                                        value="{{instance.designation}}" class="form-control mb-2"
+                                                        placeholder="Enter Designation" maxlength="250"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex mb-10 flex-wrap gap-5 mt-10">
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <div class="mb-5 fv-row">
+                                                    <label class="form-label">Education Qualification</label>
+                                                    <input type="text" class="form-control mb-2" name="education" placeholder="Enter education Qualification" value="{{instance.education}}" maxlength="250">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex mb-10 flex-wrap gap-5 mt-10">
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <div class="mb-5 fv-row">
+                                                    <label class="form-label">Location</label>
+                                                    <input type="text" class="form-control mb-2" name="location" placeholder="Enter Location" value="{{instance.location}}" maxlength="250">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex mb-10 flex-wrap gap-5 mt-10">
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <div class="mb-5 fv-row">
+                                                    <label class="form-label">Description</label>
+                                                    <textarea class="form-control mb-2" rows="4" id="mytextarea"name="description"placeholder="Enter The Description">{{instance.description}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Tab pane-->
+                </div>
+        </div>
+    </div>
+</div>
+<!--end::Tab content-->
+<div class="d-flex justify-content-end" style="padding-right: 31px;padding-bottom: 22px;">
+    <!--begin::Button-->
+    <a href="{% url 'career:job.vacancy.view.index' %}" id="kt_ecommerce_add_product_cancel"
+        class="btn btn-light me-5">Cancel</a>
+    <!--end::Button-->
+    <!--begin::Button-->
+    <button type="submit" id="create-or-update-company-profile-submit" class="btn btn-primary">
+        <span class="indicator-label">Save </span>
+    </button>
+    <button type="button" id="banner-loader-text" class="indicator-progress btn btn-primary">
+        <span class="">Please wait...
+            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+    </button>
+    <!--end::Button-->
+</div>
+</div>
+<!--end::Main column-->
+</form>
+<!--end::Form-->
+</div>
+<!--end::Content container-->
+
+<!--end::Content-->
+
+<!--end::Content wrapper-->
+{% endblock content %}
+{% block script %}
+
+<script src="//cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+<script>
+    if (typeof CKEDITOR !== 'undefined') {
+
+        CKEDITOR.replace('mytextarea', {
+            height: 200, // Set the height of the editor to 300 pixels
+            toolbar: [
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+                { name: 'colors', items: ['TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize', 'ShowBlocks', '-',] }
+                
+            ]
+        });
+    }
+
+    
+</script>
+
+
+
+<script
+    src="{% static 'assets/js/custom/pages/home-page/carrer/job-vacancy/job/create-or-update-job.js' %}?time={% now 'h:i:s' %}"></script>
+
+{% endblock script %}

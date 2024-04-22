@@ -1,0 +1,392 @@
+[  
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_property",
+      "name":"view property",
+      "content_type":4,
+      "label": "property"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_property_category",
+      "name":"view property category",
+      "content_type":4,
+      "label": "property"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_property_property",
+      "name":"view property property",
+      "content_type":4,
+      "label": "property"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_product",
+      "name":"view product",
+      "content_type":4,
+      "label": "product"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_product_category",
+      "name":"view product category",
+      "content_type":4,
+      "label": "product"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_product_brand",
+      "name":"view product brand",
+      "content_type":4,
+      "label": "product"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_product_product",
+      "name":"view product product",
+      "content_type":4,
+      "label": "product"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_jobs",
+      "name":"view jobs",
+      "content_type":4,
+      "label": "jobs"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_jobs_category",
+      "name":"view jobs category",
+      "content_type":4,
+      "label": "jobs"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_jobs_qualification",
+      "name":"view jobs qualification",
+      "content_type":4,
+      "label": "jobs"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_jobs_jobs",
+      "name":"view jobs jobs",
+      "content_type":4,
+      "label": "jobs"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_malls",
+      "name":"view malls",
+      "content_type":4,
+      "label": "malls"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_shops",
+      "name":"view shops",
+      "content_type":4,
+      "label": "shops"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_shops_shops",
+      "name":"view shops shops",
+      "content_type":4,
+      "label": "shops"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_vehicle",
+      "name":"view vehicle",
+      "content_type":4,
+      "label": "vehicle"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_vehicle_categories",
+      "name":"view vehicle categories",
+      "content_type":4,
+      "label": "vehicle"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_vehicle_brands",
+      "name":"view vehicle",
+      "content_type":4,
+      "label": "vehicle"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_vehicle_models",
+      "name":"view vehicle models",
+      "content_type":4,
+      "label": "vehicle"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_vehicle_trims",
+      "name":"view vehicle",
+      "content_type":4,
+      "label": "vehicle"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_vehicle_vehicle",
+      "name":"view vehicle vehicle",
+      "content_type":4,
+      "label": "vehicle"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_contact_request",
+      "name":"view contact request",
+      "content_type":4,
+      "label": "contact"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_contact_us",
+      "name":"view contact us",
+      "content_type":4,
+      "label": "contact"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_news_and_articles",
+      "name":"view news and articiles",
+      "content_type":4,
+      "label": "news and articiles"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_news_category",
+      "name":"view news category",
+      "content_type":4,
+      "label": "news and articiles"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_news",
+      "name":"view news ",
+      "content_type":4,
+      "label": "news and articiles"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_articles",
+      "name":"view_articles",
+      "content_type":4,
+      "label": "news and articiles"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_services",
+      "name":"view services",
+      "content_type":4,
+      "label": "services"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_services_categories",
+      "name":"view services categories",
+      "content_type":4,
+      "label": "services"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_services_services",
+      "name":"view services services",
+      "content_type":4,
+      "label": "services"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_deals",
+      "name":"view deals",
+      "content_type":4,
+      "label": "deals"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_feeds",
+      "name":"view feeds",
+      "content_type":4,
+      "label": "feeds"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_location",
+      "name":"view location",
+      "content_type":4,
+      "label": "location"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_notifications",
+      "name":"view notifications",
+      "content_type":4,
+      "label": "notifications"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_gift",
+      "name":"view gift",
+      "content_type":4,
+      "label": "gift"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_package",
+      "name":"view package",
+      "content_type":4,
+      "label": "package"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_banner",
+      "name":"view banner",
+      "content_type":4,
+      "label": "banner"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_users",
+      "name":"view users",
+      "content_type":4,
+      "label": "users"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_users_users",
+      "name":"view users users ",
+      "content_type":4,
+      "label": "users"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_users_admin",
+      "name":"view users admin",
+      "content_type":4,
+      "label": "users"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_users_category",
+      "name":"view users category",
+      "content_type":4,
+      "label": "category"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_users_category_business",
+      "name":"view users category business",
+      "content_type":4,
+      "label": "category"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_users_category_industrytype",
+      "name":"view users category industrytype",
+      "content_type":4,
+      "label": "category"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "fields": {
+      "codename":"view_groups_roles",
+      "name":"view groups roles",
+      "content_type":4,
+      "label": "groups"
+    }
+  }
+
+
+
+]

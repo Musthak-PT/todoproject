@@ -1,0 +1,131 @@
+{% extends 'admin/layouts/apps.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!--begin::Content wrapper-->
+<div class="d-flex flex-column flex-column-fluid">
+{% include 'admin/layouts/breadcrumbs.html' %}
+<!--begin::Content-->
+    <div id="kt_app_content" class="app-content flex-column-fluid">
+        <!--begin::Content container-->
+        <div id="kt_app_content_container" class="app-container container-xxl">
+        <!--begin::Form-->
+        <form id="create-or-update-user-form" class="form d-flex flex-column flex-lg-row"  method="POST" enctype="multipart/form-data"  action="{% url 'home:header.create' %}">
+            {% csrf_token %}
+                <input type="hidden" name="user_id" value="{{header.id}}" />
+                
+                    <!--begin::Main column-->
+                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                        <!--begin:::Tabs-->
+                        <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-bold mb-n2">
+                            <!--begin:::Tab item-->
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#create-or-update-user-general">NavBar Heading</a>
+                            </li>
+                            <!--end:::Tab item-->
+                        </ul>
+                        <!--end:::Tabs-->
+                        <!--begin::Tab content-->
+                        <div class="tab-content">
+                            <!--begin::Tab pane-->
+                            <div class="tab-pane fade show active" id="create-or-update-user-general" role="tab-panel">
+                                <div class="d-flex flex-column gap-7 gap-lg-10">
+                                    <div class="card card-flush py-4">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>NavBar Heading</h2>
+                                            </div>
+                                        </div>
+                                <div class="card-body pt-0 ">
+                                    <div class="d-flex mb-0 flex-wrap gap-5 mt-0">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label">Home</label>
+                                                <input type="text" name="header_home" value="{{header.home}}" class="form-control mb-2"  placeholder="Enter the campaign" />
+                                            </div>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label">About Us</label>
+                                                <input type="text" name="header_about_us" value="{{header.about_us}}" class="form-control mb-2"  placeholder="Enter the header_about us" />
+                                            </div>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label">Ghi App</label>
+                                                <input type="text" name="header_ghi_app" value="{{header.ghi_app}}" class="form-control mb-2"  placeholder="Enter the learn" />
+                                            </div>
+                                        </div> 
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label">Success Stories</label>
+                                                <input type="text" name="header_success_stories" value="{{header.success_stories}}" class="form-control mb-2"  placeholder="Enter the gallery" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-0 flex-wrap gap-5 mt-0">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label">Contact Us</label>
+                                                <input type="text" name="header_contact_us" value="{{header.contact_us}}" class="form-control mb-2"  placeholder="Enter the contact us" />
+                                            </div>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label">Documents</label>
+                                                <input type="text" name="header_documents" value="{{header.documents}}" class="form-control mb-2"  placeholder="Enter the resource" />
+                                            </div>
+                                        </div> 
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label">Library</label>
+                                                <input type="text" name="footer_library" value="{{header.library}}" class="form-control mb-2"  placeholder="Enter the campaign" />
+                                            </div>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <div class="mb-5 fv-row">
+                                                <label class="required form-label">Videos</label>
+                                                <input type="text" name="header_videos" value="{{header.videos}}" class="form-control mb-2"  placeholder="Enter the Explore" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Tab pane-->
+                    </div>
+                        <!--end::Tab content-->
+                    <div class="d-flex justify-content-end">
+                            <!--begin::Button-->
+                            <a href="{% url 'home:header.index' %}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
+                            <!--end::Button-->
+                            <!--begin::Button-->
+                            <button type="submit" id="create-or-update-user-submit" class="btn btn-primary">
+                                <span class="indicator-label">Save </span>
+                                <span class="indicator-progress">Please wait... 
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                            <!--end::Button-->
+                        </div>
+                    </div>
+                    <!--end::Main column-->
+                </form>
+                <!--end::Form-->
+            </div>
+            <!--end::Content container-->
+        </div>
+        <!--end::Content-->
+    </div>
+    <!--end::Content wrapper-->
+{% endblock content %}
+
+
+{% block script %}
+
+ 
+<script src="{% static 'assets/js/custom/pages/home-page/header/save-header.js' %}?time={% now 'h:i:s' %}"></script>
+
+{% endblock script %}

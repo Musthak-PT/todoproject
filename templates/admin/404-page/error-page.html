@@ -1,0 +1,159 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="{% static 'assets/css/error.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800;900&display=swap");
+      }
+      
+      .error-page {
+        position: relative;
+        background-color: #001831;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      @media (min-width: 992px) {
+        .error-page {
+          height: 100vh;
+        }
+      }
+      .error-page .logo-wrapper {
+        width: 220px;
+        height: 85px;
+        overflow: hidden;
+        position: absolute;
+        top: 50px;
+        left: 130px;
+      }
+      @media (max-width: 991px) {
+        .error-page .logo-wrapper {
+          width: 180px;
+          left: 50%;
+              margin-left: -100px;
+          top: 12%;
+        }
+      }
+      .error-page .logo-wrapper img {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: contain;
+           object-fit: contain;
+      }
+      .error-page .d-center {
+        display: flex;
+        align-items: center;
+      }
+      .error-page .left-img-wrapper {
+        width: 760px;
+        height: 370px;
+        overflow: hidden;
+        margin-top: 100px;
+      }
+      @media (max-width: 991px) {
+        .error-page .left-img-wrapper {
+          width: 390px;
+          height: 210px;
+          margin: 0 auto;
+          margin-top: 80px;
+        }
+      }
+      .error-page .left-img-wrapper img {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: contain;
+           object-fit: contain;
+      }
+      .error-page .content-wrapper h1 {
+        font-size: 46px;
+        color: #27c2ef;
+        font-weight: 700;
+        max-width: 420px;
+        letter-spacing: 1px;
+      }
+      @media (max-width: 991px) {
+        .error-page .content-wrapper h1 {
+          margin: 0 auto;
+          text-align: center;
+          font-size: 30px;
+        }
+      }
+      .error-page .content-wrapper p {
+        color: #fff;
+        font-size: 20px;
+        max-width: 400px;
+        font-weight: 300;
+        padding: 40px 0px;
+      }
+      @media (max-width: 991px) {
+        .error-page .content-wrapper p {
+         padding: 50px 0px;
+          margin: 0 auto;
+          text-align: center;
+          font-size: 16px;
+        }
+      }
+      .error-page .content-wrapper .btn-wrapper a {
+        background: #27c2ef;
+        border-radius: 0;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 10px 30px;
+      }
+      @media (max-width: 991px) {
+        .error-page .content-wrapper .btn-wrapper {
+          text-align: center;
+        }
+      }/*# sourceMappingURL=error.css.map */
+
+</style>
+<body>
+   <div class="error-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="logo-wrapper">
+                    <img src="{% static 'assets/media/images/todo_logo.png'%}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-7 d-center">
+                <div class="left-img-wrapper">
+                    <img src="{% static 'assets/media/images/error-page-images/left-img.png'%}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="content-wrapper">
+                    <h1>Whoops!
+                        Something went
+                        Wrong</h1>
+                        <p>The page you are looking for isn’t available.
+                            Please return to Home page</p>
+                            <div class="btn-wrapper">
+                                <a href="http://{{ request.get_host }}" class="btn">GO HOME</a>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+
+
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

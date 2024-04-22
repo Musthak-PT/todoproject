@@ -1,0 +1,160 @@
+{% extends 'admin/layouts/apps.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+    <!--begin::Content wrapper-->
+    <div class="d-flex flex-column flex-column-fluid">
+
+        {% include 'admin/layouts/breadcrumbs.html' %}
+
+        <!--begin::Content-->
+        <div id="kt_app_content" class="app-content flex-column-fluid">
+            <!--begin::Content container-->
+            <div id="kt_app_content_container" class="app-container container-xxl">
+                <!--begin::Form-->
+                <form id="create-or-update-category-form" class="form d-flex flex-column flex-lg-row" method="POST" enctype="multipart/form-data" action="{% url 'project:todo.create' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="instance_id" id="casestudy_id" value="{{instance.id}}" />
+
+                    <!--end::Aside column-->
+                    <!--begin::Main column-->
+                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                        <!--begin::Tabs-->
+                        <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-bold mb-n2">
+                            <!--begin::Tab item-->
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#create-or-update-admin-general">TODO Management</a>
+                            </li>
+                            <!--end::Tab item-->
+                        </ul>
+                        <!--end::Tabs-->
+                        <!--begin::Tab content-->
+                        <div class="tab-content">
+                            <!--begin::Tab pane-->
+                            <div class="tab-pane fade show active" id="create-or-update-admin-general" role="tab-panel">
+                                <div class="d-flex flex-column gap-7 gap-lg-10">
+                                    <div class="card card-flush py-4">
+                                        
+                                        <div class="card-body pt-0">
+                                            <div class="d-flex mb-10 flex-wrap gap-5 mt-10">
+
+                                                <div class="fv-row w-100 flex-md-root">
+                                                        <div class="mb-5 fv-row">
+                                                            <label class="required form-label">Title</label>
+                                                            <input type="text" id="todo_title" name="todo_title" value="{{instance.todo_title}}" class="form-control mb-2" maxlength='40' placeholder="Enter TODO Title" />
+                                                            <div class="error-message" style="color: red;"></div>
+                                                        </div>
+                                                </div>
+
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <div class="mb-5 fv-row">
+                                                        <label class="required form-label">Description</label>
+                                                        <textarea class="form-control mb-2" id="description" name="todo_description" maxlength='500' placeholder="Enter TODO Description">{{ instance.description }}</textarea>
+                                                    </div>
+                                                </div>
+
+                                                
+
+                                            </div>
+                                            
+                                            <div class="d-flex mb-10 flex-wrap gap-5 mt-10">
+                                                
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <div class="mb-5 fv-row">
+                                                        <label class="required form-label">Status</label>
+                                                        <select id="sitenoticeType" class="form-select mb-2" name="status" data-control-select-option="property-name" data-control="select2" data-hide-search="false" data-placeholder="Select an option">
+                                                            <option value="" disabled selected>Select an option</option>
+                                                            {% for choice in todo_choices %}
+                                                                <option value="{{ choice.0 }}" {% if choice.0 == instance.status %}selected{% endif %}>{{ choice.1 }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <div class="mb-5 fv-row">
+                                                        <label class="required form-label">Project</label>
+                                                        <select id="project" class="form-select mb-2" name="project" data-control-select-option="property-name" data-control="select2" data-hide-search="false" data-placeholder="Select an option">
+                                                            <option value="" disabled selected>Select an option</option>
+                                                            {% for project in projects %}
+                                                                <option value="{{ project.id }}" {% if instance and instance.project.id == project.id %} selected {% endif %}>{{ project.title }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Tab pane-->
+                        </div>
+                        <!--end::Tab content-->
+                        <div class="d-flex justify-content-end">
+                            <!--begin::Button-->
+                            <a href="{% url 'project:todo-view.index' %}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
+                            <!--end::Button-->
+                            <!--begin::Button-->
+                            <button type="submit" id="create-or-update-category-submit" class="btn btn-primary">
+                                <span class="indicator-label">Save </span>
+                                <span class="indicator-progress" id="banner-loader-text">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                            <!--end::Button-->
+                        </div>
+                    </div>
+                    <!--end::Main column-->
+                </form>
+                <!--end::Form-->
+            </div>
+            <!--end::Content container-->
+        </div>
+        <!--end::Content-->
+    </div>
+    <!--end::Content wrapper-->
+{% endblock content %}
+
+{% block script %}
+    <script src="{% static 'assets/js/custom/pages/home-page/todo/create-or-update-todo.js' %}?time={% now 'h:i:s' %}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#todo_title').on('input', function(){
+                var categoryName = $(this).val();
+                
+                $.ajax({
+                    url: "{% url 'project:check_todo' %}",
+                    method: 'POST',
+                    data: {
+                        'category_name': categoryName,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response){
+                        if(response.data.exists){
+                            $('.error-message').html('TODO Title Already Exists');
+                            $('#create-or-update-category-submit').hide(); // Hide the Save button
+                        } else {
+                            $('.error-message').html('');
+                            $('#create-or-update-category-submit').show(); // Show the Save button
+                        }
+                    },
+                    error: function(error){
+                        $('.error-message').html('');
+                        $('#create-or-update-category-submit').show(); // Show the Save button
+                    }
+                });
+            });
+        });
+    </script>
+ 
+
+{% endblock script %}

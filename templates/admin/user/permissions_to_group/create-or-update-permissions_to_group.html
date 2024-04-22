@@ -1,0 +1,110 @@
+{% extends 'admin/layouts/apps.html' %}
+{% load static %}
+
+
+{% block content %}
+
+	<!--begin::Content wrapper-->
+    <div class="d-flex flex-column flex-column-fluid">
+        
+        
+
+        {% include 'admin/layouts/breadcrumbs.html' %}
+
+
+
+
+        <!--begin::Content-->
+        <div id="kt_app_content" class="app-content flex-column-fluid">
+            <!--begin::Content container-->
+            <div id="kt_app_content_container" class="app-container container-xxl">
+                <!--begin::Form-->
+                <form id="create-or-update-permissions_to_group-form" class="form d-flex flex-column flex-lg-row"  method="POST" enctype="multipart/form-data"  action="">
+                    {% csrf_token %}
+                    <!--begin::Aside column-->
+                    
+                    <!--end::Aside column-->
+                    <!--begin::Main column-->
+                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                        <!--begin:::Tabs-->
+                        <!--end:::Tabs-->
+                        <!--begin::Tab content-->
+                        <div class="tab-content">
+                            <!--begin::Tab pane-->
+                            <div class="tab-pane fade show active" id="create-or-update-product-general" role="tab-panel">
+                                <div class="d-flex flex-column gap-7 gap-lg-10">
+    
+                                    
+                                    <div class="card card-flush py-4">
+                                        
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>Vendor details</h2>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="group_permission_id" value="{{group_name.id}}" />
+                                        <div class="card-body pt-0 ">
+    
+                                            <div class="d-flex mb-10 flex-wrap gap-5 mt-10">
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <div class="mb-5 fv-row">
+                                                        <label class="required form-label">Group Name</label>
+                                                        <input type="text" name="group_obj_name" value="{{group_name.name}}" class="form-control mb-2"  placeholder="Enter vendor name" />
+                                                    </div>
+                                                </div>
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <div class="mb-5 fv-row">
+                                                        <label class="required form-label">Permissions</label>
+                                                        <select class="form-select mb-2" name="permissions" data-control-select-option="permissions" data-control="select2"  data-hide-search="false" data-placeholder="Select an option" multiple>
+                                                            <option ></option>
+                                                            {% for permission in permissions %}
+                                                            <!-- <option {% if manufactures.region_id|stringformat:'s' == type.id|stringformat:'s' %} selected  {% endif %} value="{{type.id}}">{{permission}}</option> -->
+                                                            <option {% if permission.name in permissions_list %} selected {% endif %} value="{{ permission.id }}">{{permission.name}}</option>
+                                                            {% endfor %}
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Tab pane-->
+                        </div>
+                        <!--end::Tab content-->
+                        <div class="d-flex justify-content-end">
+                            <!--begin::Button-->
+                            <a href="" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
+                            <!--end::Button-->
+                            <!--begin::Button-->
+                            <button type="submit" id="create-or-update-permissions_to_group-submit" class="btn btn-primary">
+                                <span class="indicator-label">Save </span>
+                                <span class="indicator-progress">Please wait... 
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                            <!--end::Button-->
+                        </div>
+                    </div>
+                    <!--end::Main column-->
+                </form>
+                <!--end::Form-->
+            </div>
+            <!--end::Content container-->
+        </div>
+        <!--end::Content-->
+    </div>
+    <!--end::Content wrapper-->
+	
+{% endblock content %}
+
+ 
+
+{% block script %}
+
+
+
+<script src="{% static 'assets/js/custom/pages/users/permissions-to-group/create-or-update-permissions_to_group.js' %}?time={% now 'h:i:s' %}"></script>
+
+
+{% endblock script %}

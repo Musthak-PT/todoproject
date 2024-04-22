@@ -1,0 +1,297 @@
+{% extends 'admin/layouts/apps.html' %}
+{% load static %}
+
+
+{% block content %}
+
+	<!--begin::Content-->
+	<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <!--begin::Container-->
+        <div class="container-xxl" id="kt_content_container">
+            <!--begin::Form-->
+            <form id="create-or-update-user-form" class="form d-flex flex-column flex-lg-row"  method="POST" enctype="multipart/form-data"  action="{% url 'users:users.create' %}">
+                {% csrf_token %}
+
+                <input type="hidden" name="user_id" value="{{users.id}}" />
+                <!--begin::Aside column-->
+                <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+                    <!--begin::Logo settings-->
+                    <div class="card card-flush py-4">
+                        
+                        <div class="card-header">
+                            <!--begin::Card title-->
+                            <div class="card-title">
+                                <h2>Image</h2>
+                            </div>
+                            <!--end::Card title-->
+                        </div>
+                        
+                        
+                        <div class="card-body text-center pt-0">
+                            <!--begin::Image input-->
+                            <div class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true" {% if users.image is not None %} style="background-image: url({{ users.image.url }})" {% else %} style="background-image: url({% static 'assets/media/svg/files/blank-image.svg' %})" {% endif %}  >
+                                <!--begin::Preview existing user image-->
+                                <div class="image-input-wrapper w-150px h-150px"></div>
+                                <!--end::Preview existing user image-->
+                                
+                                {% comment %} <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change user image">
+                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                    <!--begin::Inputs-->
+                                    <input type="file" name="user_image" accept=".png, .jpg, .jpeg" />
+                                    <input type="hidden" name="user_image_remove" />
+                                    <!--end::Inputs-->
+                                </label> {% endcomment %}
+                                
+                                <!--begin::Cancel-->
+                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel user image">
+                                    <i class="bi bi-x fs-2"></i>
+                                </span>
+                                <!--end::Cancel-->
+                                <!--begin::Remove-->
+                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                                    <i class="bi bi-x fs-2"></i>
+                                </span>
+                                <!--end::Remove-->
+                            </div>
+                            <!--end::Image input-->
+                            
+                            {% comment %} <div class="text-muted fs-7">Set the user image. Only *.png, *.jpg and *.jpeg image files are accepted</div> {% endcomment %}
+                            
+                        </div>
+                        <!--end::Card body-->
+                    </div>
+                    <!--end::Logo settings-->
+
+
+
+                 
+                    <!--begin::Status-->
+                    <div class="card card-flush py-4">
+                        
+                        <div class="card-header">
+                            <!--begin::Card title-->
+                            <div class="card-title">
+                                <h2>Status</h2>
+                            </div>
+                            <!--end::Card title-->
+                            <!--begin::Card toolbar-->
+                            <div class="card-toolbar">
+                                <div class="rounded-circle {% if users.is_active == 1 %} bg-success  {% else %} bg-danger  {% endif %}  w-15px h-15px"></div>
+                            </div>
+                            <!--begin::Card toolbar-->
+                        </div>
+                        
+                        
+                        <div class="card-body pt-0">
+                            <!--begin::Select2-->
+                            <select class="form-select mb-2" name="user_status" data-control="select2" data-hide-search="true" data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select">
+                                <option ></option>
+                                <option value="1" {% if users.is_active == 1 %} selected="selected" {% endif %}>Active</option>
+                                <option value="0" {% if users.is_active == 0 %} selected="selected" {% endif %}>Inactive</option>
+                            </select>
+                            <!--end::Select2-->
+                            
+                            <div class="text-muted fs-7">Set the user status.</div>
+                            
+                           
+                        </div>
+                        <!--end::Card body-->
+                    </div>
+                    <!--end::Status-->
+          
+                   
+                </div>
+                <!--end::Aside column-->
+                <!--begin::Main column-->
+                <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                    <!--begin:::Tabs-->
+                    <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-bold mb-n2">
+                        <!--begin:::Tab item-->
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#create-or-update-user-general">General</a>
+                        </li>
+                        <!--end:::Tab item-->
+                  
+                    </ul>
+                    <!--end:::Tabs-->
+                    <!--begin::Tab content-->
+                    <div class="tab-content">
+                        <!--begin::Tab pane-->
+                        <div class="tab-pane fade show active" id="create-or-update-user-general" role="tab-panel">
+                            <div class="d-flex flex-column gap-7 gap-lg-10">
+                                
+
+
+                                
+                                <div class="card card-flush py-4">
+                                    
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h2>General</h2>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-body pt-0 ">
+
+                                        <div class="d-flex mb-10 flex-wrap gap-5 mt-10">
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <div class="mb-5 fv-row">
+                                                    <label class="required form-label">Full Name</label>
+                                                    <input type="text" name="full_name" value="{{users.full_name}}" class="form-control mb-2" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <div class="mb-5 fv-row">
+                                                    <label class="required form-label">Username</label>
+                                                    <input type="text" name="username" value="{{users.username}}" class="form-control mb-2" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="d-flex mb-10 flex-wrap gap-5 mt-10">
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <div class="mb-5 fv-row">
+                                                    <label class="required form-label">Email</label>
+                                                    <input type="text" name="email" value="{{users.email}}" class="form-control mb-2" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <div class="mb-5 fv-row">
+                                                    <label class="required form-label">Mobile</label>
+                                                    <input type="text" name="mobile" value="{{users.mobile}}" class="form-control mb-2" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="d-flex mb-10 flex-wrap gap-5 mt-10">
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <div class="mb-5 fv-row">
+                                                    <label class="required form-label">Email</label>
+                                                    <input type="text" name="email" value="{{users.email}}" class="form-control mb-2" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <div class="mb-5 fv-row">
+                                                    <label class="required form-label">Mobile</label>
+                                                    <input type="text" name="mobile" value="{{users.mobile}}" class="form-control mb-2" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="d-flex mb-10 flex-wrap gap-5 mt-10">
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <div class="mb-5 fv-row">
+                                                        <label class="required form-label">Reference Number</label>
+                                                        <input type="text" name="reference_number" value="{{users.reference_number|default_if_none:''}}" class="form-control mb-2" readonly />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <label class="form-label">User Type </label>
+                                                <select class="form-select mb-2" name="user_type" disabled data-control="select2"  data-hide-search="true" data-placeholder="Select an option">
+                                                    {% for type in user_types %}
+
+                                                        <option value="{{type.id}}"  {% if users.user_type|stringformat:'s' == type.id|stringformat:'s' %} selected  {% endif %} >{{type.name}}</option>
+
+                                                    {% endfor %}
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                       
+
+                                        <div class="d-flex mb-10 flex-wrap gap-5 mt-10">
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <div class="mb-5 fv-row">
+                                                    <label class="required form-label">Date Od Birth</label>
+                                                    <input type="text" name="date_of_birth" value="{{users.date_of_birth|default_if_none:''}}" class="form-control mb-2" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="fv-row w-100 flex-md-root">
+                                                
+                                            </div>
+                                        </div>
+                                        
+
+                                    </div>
+                                    
+                                </div>
+                                
+                              
+                            
+                            </div>
+                        </div>
+
+
+                        <!--end::Tab pane-->
+                    </div>
+                    <!--end::Tab content-->
+                    <div class="d-flex justify-content-end">
+                        <!--begin::Button-->
+                        <a href="{% url 'users:users.index' %}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
+                        <!--end::Button-->
+                        <!--begin::Button-->
+                        <button type="submit" id="create-or-update-user-submit" class="btn btn-primary">
+                            <span class="indicator-label">Save </span>
+                            <span class="indicator-progress">Please wait... 
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                        <!--end::Button-->
+                    </div>
+                </div>
+                <!--end::Main column-->
+            </form>
+            <!--end::Form-->
+        </div>
+        <!--end::Container-->
+    </div>
+	<!--end::Content-->
+	
+{% endblock content %}
+
+
+
+{% block script %}
+    <script src="{% static 'assets/js/custom/pages/users/save-user.js' %}?time={% now 'h:i:s' %}"></script>
+
+
+    <script>
+        $(document).ready(function(){
+            Inputmask({
+                mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[.*{2,6}][.*{1,2}]",
+                greedy: false,
+                onBeforePaste: function (pastedValue, opts) {
+                    pastedValue = pastedValue.toLowerCase();
+                    return pastedValue.replace("mailto:", "");
+                },
+                definitions: {
+                    "*": {
+                        validator: '[0-9A-Za-z!#$%&"*+/=?^_`{|}~\-]',
+                        cardinality: 1,
+                        casing: "lower"
+                    }
+                }
+            }).mask("#account_holder_email");
+            
+            new Tagify(document.querySelector("#meta_keywords"));
+            $('#account_number').maxlength({
+                warningClass: "badge badge-warning",
+                limitReachedClass: "badge badge-success"
+            });
+
+            Inputmask({
+                "mask" : "(999) 999-9999"
+            }).mask("#contact_number");
+
+
+              
+        });
+    </script>
+
+{% endblock script %}

@@ -1,0 +1,155 @@
+{% extends 'admin/layouts/apps.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!--begin::Content wrapper-->
+<div class="d-flex flex-column flex-column-fluid">
+    {% include 'admin/layouts/breadcrumbs.html' %}
+    <!--begin::Content-->
+    <div id="kt_app_content" class="app-content flex-column-fluid">
+        <!--begin::Content container-->
+        <div id="kt_app_content_container" class="app-container container-xxl">
+            <!--begin::Form-->
+            <form id="create-or-update-company-profile-form" class="form d-flex flex-column flex-lg-row" method="POST"
+                enctype="multipart/form-data" action="{% url 'blog:blog.create' %}">
+                {% csrf_token %}
+                <input type="hidden" name="instance_id" value="{{instance.id}}" />
+                <!--begin::Aside column-->
+                <!--begin::Main column-->
+                <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                    <!--begin::Tab content-->
+                    <div class="tab-content">
+                        <!--begin::Tab pane-->
+                        <div class="tab-pane fade show active" id="create-or-update-user-general" role="tab-panel">
+                            <div class="d-flex flex-column gap-7 gap-lg-10">
+                                <div class="card card-flush py-4">
+                                    <div class="card-body pt-0 ">
+                                        <tr>
+                                            <td>
+                                                <table cellpadding="0" cellspacing="0"
+                                                    style="width: 100%; border: 1px solid #ededed">
+                                                    <tbody>
+
+                                                        {% if instance.name %}
+                                                        <tr>
+                                                            <td
+                                                            style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight:500; color:#455056">
+                                                            Name</td>
+                                                            <td
+                                                            style="padding: 10px; border-bottom: 1px solid #ededed; color: #000000;">
+                                                            {{instance.name}}</td>
+                                                        </tr>
+                                                        {% endif %}
+                                                        <tr>
+                                                            <td style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: 500; color: #455056">
+                                                            Email
+                                                            </td>
+                                                            <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #000000;">
+                                                            <a href="mailto:{{ instance.email }}">{{ instance.email }}</a>
+                                                            </td>
+                                                        </tr>
+
+                                                        {% if instance.mobile_number %}
+                                                        <tr>
+                                                            <td style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: 500; color: #455056">
+                                                                Mobile Number
+                                                            </td>
+                                                            <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #000000;">
+                                                            {{ instance.mobile_number }}
+                                                            </td>
+                                                        </tr>
+                                                        {% endif %}
+
+                                                        {% if instance.vehicle.title %}
+                                                        <tr>
+                                                            <td style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: 500; color: #455056">
+                                                            Vehicle Name
+                                                            </td>
+                                                            <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #000000;">
+                                                            {{ instance.vehicle.title }}
+                                                            </td>
+                                                        </tr>
+                                                        {% endif %}
+
+                                                        {% if instance.vehicle.reg_year %}
+                                                        <tr>
+                                                            <td style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: 500; color: #455056">
+                                                            Vehicle Model
+                                                            </td>
+                                                            <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #000000;">
+                                                            {{ instance.vehicle.reg_year }}
+                                                            </td>
+                                                        </tr>
+                                                        {% endif %}
+                                                        {% if instance.vehicle.price %}
+                                                        <tr>
+                                                            <td style="padding: 10px; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; width: 35%; font-weight: 500; color: #455056">
+                                                            Vehicle Price
+                                                            </td>
+                                                            <td style="padding: 10px; border-bottom: 1px solid #ededed; color: #000000;">
+                                                            {{ instance.vehicle.price }}
+                                                            </td>
+                                                        </tr>
+                                                        {% endif %}
+
+                                                        {% if instance.subject %}
+                                                        <tr>
+                                                            <td
+                                                                style="padding: 10px; border-bottom: 1px solid #ededed;border-right: 1px solid #ededed; width: 35%; font-weight:500; color:#455056">
+                                                                Subject</td>
+                                                            <td
+                                                                style="padding: 10px; border-bottom: 1px solid #ededed; color: #455056;">
+                                                                {{instance.subject}}</td>
+                                                        </tr>
+                                                        {% endif %}
+                                            
+                                                        {% if instance.message %}
+                                                        <tr>
+                                                            <td
+                                                            style="padding: 10px; border-right: 1px solid #ededed; width: 35%;font-weight:500; color:#455056">
+                                                            Message</td>
+                                                            <td style="padding: 10px; color: #000000;">{{instance.message}}</td>
+                                                        </tr>
+                                                        {% endif %}
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--end::Tab pane-->
+                        </div>
+
+                        
+                        <!--end::Tab content-->
+                        <div class="d-flex justify-content-end" style='padding-top: 20px;'>
+                            <!--begin::Button-->
+                            <a href="{% url 'contact:Booking_enquiry.view.index' %}" id="kt_ecommerce_add_product_cancel"
+                                class="btn btn-light me-5" style="background-color: #27c3f185;">Back</a>
+                            <!--end::Button-->
+                        </div>
+                    </div>
+                    <!--end::Main column-->
+            </form>
+            <!--end::Form-->
+        </div>
+        <!--end::Content container-->
+    </div>
+    <!--end::Content-->
+</div>
+<!--end::Content wrapper-->
+{% endblock content %}
+{% block script %}
+
+<script
+    src="{% static 'assets/js/custom/pages/home-page/contact-us/emi-enquiry/emi-datatable.js' %}?time={% now 'h:i:s' %}"></script>
+
+
+{% endblock script %}
+
+
